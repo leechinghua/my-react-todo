@@ -53,3 +53,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.completed {
+  opacity: 0.4;
+  text-decoration: line-through 3px;
+}
