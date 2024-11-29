@@ -1,7 +1,8 @@
+
 function Todo({ todo }) {
   return (
     <div className="todo">
-      <p>{todo}</p>
+      <p>{todo.content}</p>
     </div>
   );
 }

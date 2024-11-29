@@ -1,11 +1,16 @@
 import { useState } from "react";
 
-function CreateForm() {
+function CreateForm({ addTodo }) {
   const [content, setContent] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTodo(content);
+    setContent('')
+  };
 
   return (
     <>
-      <form className="create-form">
+      <form className="create-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="輸入代辦事項"
@@ -14,7 +19,7 @@ function CreateForm() {
             setContent(e.target.value);
           }}
         />
-        <button type="submit" >加入</button>
+        <button type="submit">加入</button>
       </form>
     </>
   );
