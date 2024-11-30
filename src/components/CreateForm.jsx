@@ -13,7 +13,7 @@ function CreateForm({ addTodo }) {
       <form className="create-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="輸入代辦事項"
+          placeholder="輸入待辦事項"
           value={content}
           onChange={(e) => {
             setContent(e.target.value);
