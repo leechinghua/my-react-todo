@@ -4,11 +4,24 @@ import Todo from "./Todo";
 
 function TodoWrapper() {
   const [todos, setTodos] = useState([
-    { content: "打掃廁所", id: Math.random(), isCompleted: false },
-    { content: "寫作業", id: Math.random(), isCompleted: false },
+    {
+      content: "打掃廁所",
+      id: Math.random(),
+      isCompleted: false,
+      isEdited: false,
+    },
+    {
+      content: "寫作業",
+      id: Math.random(),
+      isCompleted: false,
+      isEdited: false,
+    },
   ]);
   const addTodo = (content) => {
-    setTodos([...todos, { content, id: Math.random(), isCompleted: false }]);
+    setTodos([
+      ...todos,
+      { content, id: Math.random(), isCompleted: false, isEdited: false },
+    ]);
   };
   const deleteTodo = (id) => {
     setTodos(
@@ -26,6 +39,23 @@ function TodoWrapper() {
       })
     );
   };
+  const toggleIsEditing = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return todo.id == id ? { ...todo, isEdited: !todo.isEdited } : todo;
+      })
+    );
+  };
+  const editTodo = (id, newContent) => {
+    setTodos(
+      todos.map((todo) => {
+        return todo.id === id
+          ? { ...todo, content: newContent, isEdited: false }
+          : todo;
+      })
+    );
+  };
+
   return (
     <div className="wrapper">
       <h1>待辦事項</h1>
@@ -37,6 +67,8 @@ function TodoWrapper() {
             key={todo.id}
             deleteTodo={deleteTodo}
             toggleCompleted={toggleCompleted}
+            toggleIsEditing={toggleIsEditing}
+            editTodo={editTodo}
           />
         );
       })}
